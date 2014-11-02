@@ -1,0 +1,83 @@
+snippet classdoxy
+abbr    classdoxy
+    /**
+	 * <summary>
+	 * ${0:clasname}. 
+	 * </summary>
+	 */
+
+snippet funcdoxy
+abbr    funcdoxy
+    /// <summary>
+	/// ${0}.
+	/// </summary>
+	/// <param name="${1}"> .</param>
+    /// <returns>  </returns>
+
+snippet editormultiple
+abbr editmultiple
+    [CanEditMultipleObjects]
+
+snippet editorcustom
+abbr customeditor
+    [CustomEditor(typeof(${0:class}))]
+
+snippet enumfor
+abbr enumfor
+    foreach( ${0:enum} item in Enum.GetValue( typeof( ${0:enum} ) ) )
+    {
+    }
+
+snippet awake
+abbr    Awake
+    private void Awake()
+    {
+    }
+
+snippet update
+abbr    Update
+    private void Update()
+    {
+    }
+
+snippet LateUpdate
+abbr update
+    private void LateUpdate()
+    {
+    }
+
+snippet FixedUpdate
+abbr update
+    private void FixedUpdate()
+    {
+    }
+snippet gui
+abbr OnGUI
+    private void OnGUI()
+    {
+    }
+snippet destroy
+abbr OnDestroy
+    private void OnDestroy()
+    {
+    }
+snippet componentmenu
+abbr AddComponentMenu
+    [AddComponentMenu("${0:path}")]
+
+snippet menuitem
+abbr MenuItem
+    [MenuItem("${0:path}")]
+
+snippet triggerenter
+abbr OnTriggerEnter
+    private void OnTriggerEnter( Collider collider )
+	{
+	}
+
+snippet triggerexit
+abbr OnTriggerExit
+    private void OnTriggerExit( Collider collider )
+	{
+	}
+

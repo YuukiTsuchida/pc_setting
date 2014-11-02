@@ -481,7 +481,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
-let g:neosnippet#snippets_directory = '~/vim_mysnippet/'
+let g:neosnippet#snippets_directory = '~/.vim/vim_mysnippet/'
 
 let g:neosnippet#enable_preview = 1
 
