@@ -153,10 +153,6 @@ call pathogen#runtime_append_all_bundles()
 set nocompatible
 filetype off
 
-if has('vim_starting')
-"  set runtimepath+='path to neobundle directory'
-  call neobundle#rc(expand('~/.vim/bundle/neobundle/plugins'))
-endif
 
 " yank → clipbord
 set clipboard=unnamed,autoselect
@@ -165,84 +161,93 @@ set clipboard=unnamed,autoselect
 au Filetype qf noremap <silent> <buffer> <ESC><ESC> :q<CR>
 au Filetype qf inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
 
-	
-"""""""  プラグインのパスを管理
-NeoBundle 'Shougo/unite.vim.git'
-NeoBundle 'Shougo/vimfiler.git'
-NeoBundle 'Shougo/neomru.vim'
+if has('vim_starting')
+	set runtimepath+=~/.vim/bundle/neobundle.vim/
+	call neobundle#begin(expand('~/.vim/bundle/neobundle/plugins'))
 
-NeoBundle 'Shougo/vimproc', {
-  \ 'build' : {
-    \ 'windows' : 'make -f make_mingw32.mak',
-    \ 'cygwin' : 'make -f make_cygwin.mak',
-    \ 'mac' : 'make -f make_mac.mak',
-    \ 'unix' : 'make -f make_unix.mak',
-  \ },
-\ }
+	NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimshell.git'
-NeoBundle 'Shougo/neocomplete.vim'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle "Shougo/neosnippet-snippets"
+	"""""""  プラグインのパスを管理
+	NeoBundle 'Shougo/unite.vim.git'
+	NeoBundle 'Shougo/vimfiler.git'
+	NeoBundle 'Shougo/neomru.vim'
 
-NeoBundle 'nathanaelkane/vim-indent-guides'
+	NeoBundle 'Shougo/vimproc', {
+	  \ 'build' : {
+		\ 'windows' : 'make -f make_mingw32.mak',
+		\ 'cygwin' : 'make -f make_cygwin.mak',
+		\ 'mac' : 'make -f make_mac.mak',
+		\ 'unix' : 'make -f make_unix.mak',
+	  \ },
+	\ }
 
-NeoBundle 'vim-scripts/YankRing.vim'
+	NeoBundle 'Shougo/vimshell.git'
+	NeoBundle 'Shougo/neocomplete.vim'
+	NeoBundle 'Shougo/neosnippet'
+	NeoBundle "Shougo/neosnippet-snippets"
 
-NeoBundle 'kien/ctrlp.vim'
+	NeoBundle 'nathanaelkane/vim-indent-guides'
 
-NeoBundle 'thinca/vim-quickrun'
+	NeoBundle 'vim-scripts/YankRing.vim'
 
-NeoBundle 'sjl/gundo.vim'
+	NeoBundle 'kien/ctrlp.vim'
 
-NeoBundle 'kevinw/pyflakes-vim'
-NeoBundle 'jmcantrell/vim-virtualenv'
+	NeoBundle 'thinca/vim-quickrun'
 
-NeoBundleLazy "davidhalter/jedi-vim", {
-      \ "autoload": {
-      \   "filetypes": ["python", "python3", "djangohtml"],
-      \ },
-      \ "build": {
-      \   "mac": "pip install jedi",
-      \   "unix": "pip install jedi",
-      \ }}
+	NeoBundle 'sjl/gundo.vim'
 
-NeoBundle 'szw/vim-tags'
+	NeoBundle 'kevinw/pyflakes-vim'
+	NeoBundle 'jmcantrell/vim-virtualenv'
 
-NeoBundleLazy 'nosami/Omnisharp', {
-\   'autoload': {'filetypes': ['cs']},
-\   'build': {
-\     'mac': 'xbuild server/OmniSharp.sln /p:Platform="Any CPU"',
-\     'unix': 'xbuild server/OmniSharp.sln',
-\   }
-\ }
+	NeoBundleLazy "davidhalter/jedi-vim", {
+		  \ "autoload": {
+		  \   "filetypes": ["python", "python3", "djangohtml"],
+		  \ },
+		  \ "build": {
+		  \   "mac": "pip install jedi",
+		  \   "unix": "pip install jedi",
+		  \ }}
 
-NeoBundle 'kakkyz81/evervim'
-NeoBundle 'tyru/restart.vim'
+	NeoBundle 'szw/vim-tags'
 
-NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'kannokanno/previm'
-NeoBundle 'tyru/open-browser.vim'
+	NeoBundleLazy 'nosami/Omnisharp', {
+	\   'autoload': {'filetypes': ['cs']},
+	\   'build': {
+	\     'mac': 'xbuild server/OmniSharp.sln /p:Platform="Any CPU"',
+	\     'unix': 'xbuild server/OmniSharp.sln',
+	\   }
+	\ }
 
-"textobj
-NeoBundle 'kana/vim-textobj-user'
-NeoBundle 'bps/vim-textobj-python'
+	NeoBundle 'kakkyz81/evervim'
+	NeoBundle 'tyru/restart.vim'
 
-NeoBundle 'osyo-manga/vim-marching'
+	NeoBundle 'plasticboy/vim-markdown'
+	NeoBundle 'kannokanno/previm'
+	NeoBundle 'tyru/open-browser.vim'
 
-NeoBundleLazy 'vim-jp/cpp-vim', {
-            \ 'autoload' : {'filetypes' : 'cpp'}
-            \ }
+	"textobj
+	NeoBundle 'kana/vim-textobj-user'
+	NeoBundle 'bps/vim-textobj-python'
 
-NeoBundle 'Shougo/unite-outline'
+	NeoBundle 'osyo-manga/vim-marching'
 
-" clojure plugin
-NeoBundle 'guns/vim-clojure-static'
-NeoBundle 'kien/rainbow_parentheses.vim'
-NeoBundle 'tpope/vim-fireplace'
-NeoBundle 'tpope/vim-classpath'
+	NeoBundleLazy 'vim-jp/cpp-vim', {
+				\ 'autoload' : {'filetypes' : 'cpp'}
+				\ }
 
-NeoBundle 'vim-ruby/vim-ruby'
+	NeoBundle 'Shougo/unite-outline'
+
+	" clojure plugin
+	NeoBundle 'guns/vim-clojure-static'
+	NeoBundle 'kien/rainbow_parentheses.vim'
+	NeoBundle 'tpope/vim-fireplace'
+	NeoBundle 'tpope/vim-classpath'
+
+	NeoBundle 'vim-ruby/vim-ruby'
+
+call neobundle#end()
+
+endif
 
 filetype plugin on
 filetype indent on
@@ -411,7 +416,7 @@ function! s:hooks.on_source(bundle)
   let g:jedi#popup_on_dot = 0
 endfunction
 
-# jedi + neocomplete
+"jedi+neocomplete
 autocmd FileType python setlocal omnifunc=jedi#completions
 let g:jedi#auto_vim_configuration = 0
 if !exists('g:neocomplete#force_omni_input_patterns')
@@ -434,7 +439,7 @@ let g:yankring_window_height=13
 "VimFiler
 :nmap <F9> :VimFilerExplorer -buffer-name=explorer -split -winwidth=45 -toggle -no-quit<Cr>
 autocmd! FileType vimfiler call g:my_vimfiler_settings()
-function! g:my_vimfiler_settings()
+function! s:my_vimfiler_settings()
   nmap     <buffer><expr><Cr> vimfiler#smart_cursor_map("\<Plug>(vimfiler_expand_tree)", "\<Plug>(vimfiler_edit_file)")
 "  nnoremap <buffer>v          :call vimfiler#mappings#do_action('my_vsplit')<Cr>
 endfunction
