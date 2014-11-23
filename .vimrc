@@ -244,6 +244,7 @@ if has('vim_starting')
 	NeoBundle 'tpope/vim-classpath'
 
 	NeoBundle 'vim-ruby/vim-ruby'
+	NeoBundle "osyo-manga/vim-monster"
 
 call neobundle#end()
 
@@ -530,3 +531,8 @@ au Syntax * RainbowParenthesesLoadSquare
 
 " C++ の場合は、<> もハイライト
 autocmd FileType cpp :RainbowParenthesesLoadChevrons
+
+"osyo-manga/vim-monster
+let g:neocomplete#sources#omni#input_patterns = {
+\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+\}
