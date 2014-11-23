@@ -182,9 +182,12 @@ if has('vim_starting')
 	\ }
 
 	NeoBundle 'Shougo/vimshell.git'
+
+	" 入力補助
 	NeoBundle 'Shougo/neocomplete.vim'
 	NeoBundle 'Shougo/neosnippet'
 	NeoBundle "Shougo/neosnippet-snippets"
+	NeoBundle 'AndrewRadev/switch.vim'
 
 	NeoBundle 'nathanaelkane/vim-indent-guides'
 
@@ -196,6 +199,7 @@ if has('vim_starting')
 
 	NeoBundle 'sjl/gundo.vim'
 
+	" python
 	NeoBundle 'kevinw/pyflakes-vim'
 	NeoBundle 'jmcantrell/vim-virtualenv'
 
@@ -208,8 +212,16 @@ if has('vim_starting')
 		  \   "unix": "pip install jedi",
 		  \ }}
 
-	NeoBundle 'szw/vim-tags'
+	" ctags
+"	NeoBundle 'szw/vim-tags'
+"	NeoBundle 'soramugi/auto-ctags.vim'
+	NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+      \ 'depends': 'Shougo/vimproc',
+      \ 'autoload' : {
+      \   'commands': ['TagsUpdate', 'TagsSet', 'TagsBundle']
+      \ }}
 
+	" cs
 	NeoBundleLazy 'nosami/Omnisharp', {
 	\   'autoload': {'filetypes': ['cs']},
 	\   'build': {
@@ -217,20 +229,26 @@ if has('vim_starting')
 	\     'unix': 'xbuild server/OmniSharp.sln',
 	\   }
 	\ }
-
+	
+	" evernote連携
 	NeoBundle 'kakkyz81/evervim'
-	NeoBundle 'tyru/restart.vim'
+	"NeoBundle 'tyru/restart.vim'
+	
+	"ソースのコメントインorアウト
+	NeoBundle 'tyru/caw.vim'
 
+	" markdown
 	NeoBundle 'plasticboy/vim-markdown'
 	NeoBundle 'kannokanno/previm'
 	NeoBundle 'tyru/open-browser.vim'
+
 
 	"textobj
 	NeoBundle 'kana/vim-textobj-user'
 	NeoBundle 'bps/vim-textobj-python'
 
+	"cpp
 	NeoBundle 'osyo-manga/vim-marching'
-
 	NeoBundleLazy 'vim-jp/cpp-vim', {
 				\ 'autoload' : {'filetypes' : 'cpp'}
 				\ }
@@ -243,8 +261,12 @@ if has('vim_starting')
 	NeoBundle 'tpope/vim-fireplace'
 	NeoBundle 'tpope/vim-classpath'
 
+	"ruby
 	NeoBundle 'vim-ruby/vim-ruby'
-	NeoBundle "osyo-manga/vim-monster"
+" 	NeoBundle "osyo-manga/vim-monster"
+	NeoBundle "Shougo/neocomplcache-rsense.vim"
+	NeoBundle "vim-scripts/ruby-matchit"
+	NeoBundle "basyura/unite-rails"
 
 call neobundle#end()
 
@@ -260,7 +282,6 @@ let g:evervim_devtoken = 'S=s277:U=2348cb2:E=14c4564bd42:C=144edb39146:P=1cd:A=e
 " vimtags  homebrewでインストールしたタグを使用する
 let g:vim_tags_project_tags_command = "/usr/local/bin/ctags -R {OPTIONS} {DIRECTORY} 2>/dev/null"
 let g:vim_tags_gems_tags_command = "/usr/local/bin/ctags -R {OPTIONS} `bundle show --paths` 2>/dev/null"
-
 
 
 " OmniSharp
@@ -464,8 +485,8 @@ let g:virtualenv_directory = '~/.pythonbrew/venvs/Python-3.2.3'
 
 " restart.vim
 " 終了時に保存するセッションオプションを設定する
-let g:restart_sessionoptions
-    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
+"let g:restart_sessionoptions
+"    \ = 'blank,buffers,curdir,folds,help,localoptions,tabpages'
 
 
 " NeoSnippet
@@ -533,6 +554,15 @@ au Syntax * RainbowParenthesesLoadSquare
 autocmd FileType cpp :RainbowParenthesesLoadChevrons
 
 "osyo-manga/vim-monster
-let g:neocomplete#sources#omni#input_patterns = {
-\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
-\}
+"let g:neocomplete#sources#omni#input_patterns = {
+"\   "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+"\}
+
+" tyru/caw.vim
+" \sc でカーソル行をコメントアウトor解除
+nmap \sc <Plug>(caw:I:toggle)
+vmap \sc <Plug>(caw:I:toggle)
+
+
+" AndrewRadev/switch.vim
+nnoremap - :Switch<cr>
