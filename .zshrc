@@ -1,8 +1,8 @@
 ######
 # パス設定
 #####
-export NDK_ROOT=/Users/tsuchidayuuki/Library/Developer/android/android-ndk-r9b
-export ANDROID_SDK_ROOT=/Users/tsuchidayuuki/Library/Developer/android/sdk
+export NDK_ROOT=$HOME/Library/Developer/android/android-ndk-r9d
+export ANDROID_SDK_ROOT=$HOME/Library/Developer/android/sdk
 export ANT_ROOT=/usr/local/bin
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
@@ -19,6 +19,7 @@ export PATH=/usr/local/opt/php54/bin:$PATH
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig 
 export PATH=/Users/tsuchidayuuki/.pyenv/bin:$PATH
 
+export NDK_CCACHE=/usr/local/bin/ccache
 
 # nodejs 
 source ~/.nvm/nvm.sh
@@ -45,6 +46,7 @@ StartOmniServer()
 {
 mono $HOME/.vim/bundle/neobundle/plugins/Omnisharp/server/OmniSharp/bin/Debug/OmniSharp.exe -p 2000 -s $1;
 }
+
 # pythonbrew
 #if [ -s "$HOME/.pythonbrew/etc/bashrc" ]; then
 #    source "$HOME/.pythonbrew/etc/bashrc"
@@ -68,13 +70,17 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 # ターミナルでブランチ名を表示
 # VCS settings
 autoload -Uz vcs_info
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:*' formats "%F{white}%c%u[%b]%f"
 precmd() {
-    psvar=()
-    LANG=en_US.UTF-8 vcs_info
-    psvar[1]=$vcs_info_msg_0_
+     psvar=()
+     LANG=en_US.UTF-8 vcs_info
+#     psvar[1]=$vcs_info_msg_0_
 }
 #PROMPT=$'%2F%n@%m%f %3F%~%f%1v\n%# '
-PROMPT=$'%/%% %f%1v\n%# '
+setopt prompt_subst
+#PROMPT=$'%/%% %f%1v\n%# '
+PROMPT=$'%/%% %f%1v''${vcs_info_msg_0_}'$'\n%# '
 
 # ターミナルでmacvimを使用する
 export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
@@ -99,19 +105,24 @@ zstyle ':completion:*' completer _oldlist _complete _match _ignored \
 autoload -U compinit
 compinit -u
 
-source ~/.zsh/auto-fu.zsh
-function zle-line-init () {
-    auto-fu-init;
-}
-zle -N zle-line-init
+#if [ -e $HOME/Documents/github/pc_setting/zsh-completions/src/ ]; then
+#	fpath=($HOME/Documents/github/pc_setting/zsh-completions/src $fpath)
+#fi
 
-function () {
-    local code
-    code=${functions[auto-fu-init]/'\n-azfu-'/''}
-    eval "function auto-fu-init () { $code }"
-    code=${functions[auto-fu]/fg=black,bold/fg=white}
-    eval "function auto-fu () { $code }"
-}
+
+#source ~/.zsh/auto-fu.zsh
+#function zle-line-init () {
+#    auto-fu-init;
+#}
+#zle -N zle-line-init
+#
+#function () {
+#    local code
+#    code=${functions[auto-fu-init]/'\n-azfu-'/''}
+#    eval "function auto-fu-init () { $code }"
+#    code=${functions[auto-fu]/fg=black,bold/fg=white}
+#    eval "function auto-fu () { $code }"
+#}
 
 ## auto-fu 有効化
 #function zle-line-init () {

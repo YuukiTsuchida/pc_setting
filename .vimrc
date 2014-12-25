@@ -18,9 +18,10 @@ set swapfile
 set directory=$HOME/vi
 
 set undodir=$HOME/vi
+set undofile
 "文字コードの指定
 set encoding=utf-8
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 
 set fileformats=unix,dos,mac
 
@@ -44,7 +45,8 @@ set shiftwidth=4
 set showtabline=2  
 
 "タブをスペースに展開しない
-set noexpandtab
+"set noexpandtab
+set expandtab
 
 "行数表示
 set nu
@@ -144,6 +146,10 @@ setlocal omnifunc=syntaxcomplete#Complete
 
 "ステータスバーの表示を変更
 let &statusline='%F%m%r%h%w [FORMAT=%{&ff}] [ENC=%{&fileencoding}] [TYPE=%Y] [ASCII=\%03.3b] [HEX=\%02.2B] [POS=%04l,%04v][%p%%] [LEN=%L]'
+
+"タグ複数あることを考慮してキーバンドを上書き
+nnoremap <C-]> g<C-]> 
+
 """""""" 以下プラグインの関連設定  """"""""""""""""
 
 """" プラグイン管理プラグイン設定 """""""""
@@ -199,6 +205,10 @@ if has('vim_starting')
 
 	NeoBundle 'sjl/gundo.vim'
 
+	"cpp
+"	NeoBundle "vim-scripts/taglist.vim"
+"	NeoBundleLazy 'kana/vim-altr'
+
 	" python
 	NeoBundle 'kevinw/pyflakes-vim'
 	NeoBundle 'jmcantrell/vim-virtualenv'
@@ -213,7 +223,7 @@ if has('vim_starting')
 		  \ }}
 
 	" ctags
-"	NeoBundle 'szw/vim-tags'
+	NeoBundle 'szw/vim-tags'
 "	NeoBundle 'soramugi/auto-ctags.vim'
 	NeoBundleLazy 'alpaca-tc/alpaca_tags', {
       \ 'depends': 'Shougo/vimproc',
@@ -268,6 +278,7 @@ if has('vim_starting')
 	NeoBundle "vim-scripts/ruby-matchit"
 	NeoBundle "basyura/unite-rails"
 
+	
 call neobundle#end()
 
 endif
@@ -537,12 +548,6 @@ endif
 let g:neocomplete#force_omni_input_patterns.cpp =
     \ '[^.[:digit:] *\t]\%(\.\|->\)\w*\|\h\w*::\w*'
 
-" インクルードディレクトリのパスを設定
-let g:marching_include_paths = [
-\   "/Users/tsuchidayuuki/cocos2d-x/boost_1_55_0",
-\	"/Users/tsuchidayuuki/Library/Developer/android/android-ndk-r9b/sources/cxx-stl/llvm-libc++/libcxx/include",
-\	"/Users/tsuchidayuuki/cocos2d-x/cocos",
-\]
 
 "rainbow_parentheses
 " rainbow_parentheses.vimの括弧の色付けを有効化
@@ -566,3 +571,37 @@ vmap \sc <Plug>(caw:I:toggle)
 
 " AndrewRadev/switch.vim
 nnoremap - :Switch<cr>
+
+"NeoBundleLazy 'kana/vim-altr'
+"nnoremap <Space>a <Plug>(altr-forward)
+
+"NeoBundle "vim-scripts/taglist.vim"
+"nnoremap <Space>tlist :Tlist<CR>
+
+
+
+"""""""""" cpp setting """"""""""""""""""""""""""""""
+" インクルードディレクトリのパスを設定
+let g:marching_include_paths = [
+\   "/Applications/Android/boost_1_55_0",
+\	"/Users/tsuchidayuuki/Library/Developer/android/android-ndk-r9d/sources/cxx-stl/llvm-libc++/libcxx/include",
+\	"/Users/tsuchidayuuki/Library/Developer/android/android-ndk-r9d/platforms/android-14/arch-arm/usr/include",
+\	"/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni",
+\	"/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/mautils",
+\  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/tinyxml",
+\  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/curl/include/curl",
+\  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/openssl/include/openssl",
+\]
+
+set tags=$HOME/Documents/bx56amazon/gitsvn/maav/tags
+
+" tagsの設定
+" gitのルートに存在するtagsを取得する
+"let top = system("git rev-parse --show-toplevel")
+"echo top
+"if v:shell_error == 0
+"    echo ( top . "/tags" )
+"    echo join([top, '/tags'], '' )
+"    set tags=top
+"endif
+
