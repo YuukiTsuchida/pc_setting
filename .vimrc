@@ -279,6 +279,9 @@ if has('vim_starting')
 	NeoBundle "basyura/unite-rails"
 
 	
+
+    "自作
+    NeoBundle 'YuukiTsuchida/ctags-auto'
 call neobundle#end()
 
 endif
@@ -593,7 +596,7 @@ let g:marching_include_paths = [
 \  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/openssl/include/openssl",
 \]
 
-set tags=$HOME/Documents/bx56amazon/gitsvn/maav/tags
+"set tags=$HOME/Documents/bx56amazon/gitsvn/maav/tags
 
 " tagsの設定
 " gitのルートに存在するtagsを取得する
