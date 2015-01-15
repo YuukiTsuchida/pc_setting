@@ -1,7 +1,8 @@
 ######
 # パス設定
 #####
-export NDK_ROOT=$HOME/Library/Developer/android/android-ndk-r9d
+export NDK_ROOT=$HOME/Library/Developer/android/android-ndk-r10d
+export ANDROID_NDK_HOME=$NDK_ROOT
 export ANDROID_SDK_ROOT=$HOME/Library/Developer/android/sdk
 export ANT_ROOT=/usr/local/bin
 
