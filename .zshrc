@@ -21,8 +21,6 @@ export PATH=/Users/tsuchidayuuki/.pyenv/bin:$PATH
 
 export NDK_CCACHE=/usr/local/bin/ccache
 
-# nodejs 
-source ~/.nvm/nvm.sh
 
 eval "$(pyenv init -)"
 export PYENV_ROOT=/Users/tsuchidayuuki/.pyenv
@@ -230,3 +228,11 @@ setopt no_beep               # ビープ音を消す
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# Add environment variable COCOS_X_ROOT for cocos2d-x
+export COCOS_X_ROOT=/Users/tsuchidayuuki/cocos2d-x
+export PATH=$COCOS_X_ROOT:$PATH
+
+# Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
+export COCOS_TEMPLATES_ROOT=/Users/tsuchidayuuki/cocos2d-x/templates
+export PATH=$COCOS_TEMPLATES_ROOT:$PATH
