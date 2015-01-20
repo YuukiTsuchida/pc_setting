@@ -23,6 +23,11 @@ export PATH=/Users/tsuchidayuuki/.pyenv/bin:$PATH
 export NDK_CCACHE=/usr/local/bin/ccache
 
 
+#node
+export PATH=$PATH:$HOME/.nodebrew/current/bin
+
+
+
 eval "$(pyenv init -)"
 export PYENV_ROOT=/Users/tsuchidayuuki/.pyenv
 
