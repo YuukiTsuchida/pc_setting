@@ -620,7 +620,8 @@ let g:marching_include_paths = [
 "NeoBundle 'mattn/jscomplete-vim'
 "NeoBundle 'myhere/vim-nodejs-complete'
 "autocmd FileType javascript :setl omnifunc=jscomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
 
 
 "NeoBundle 'scrooloose/syntastic'
