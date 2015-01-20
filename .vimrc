@@ -239,7 +239,10 @@ if has('vim_starting')
 	\     'unix': 'xbuild server/OmniSharp.sln',
 	\   }
 	\ }
-	
+    
+    "syntaxチェック
+	NeoBundle 'scrooloose/syntastic'
+
 	" evernote連携
 	NeoBundle 'kakkyz81/evervim'
 	"NeoBundle 'tyru/restart.vim'
@@ -264,6 +267,12 @@ if has('vim_starting')
 				\ }
 
 	NeoBundle 'Shougo/unite-outline'
+
+    "nodejs
+    NeoBundle 'moll/vim-node'
+    NeoBundle 'mattn/jscomplete-vim'
+    NeoBundle 'myhere/vim-nodejs-complete'
+    NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 	" clojure plugin
 	NeoBundle 'guns/vim-clojure-static'
@@ -608,3 +617,24 @@ let g:marching_include_paths = [
 "    set tags=top
 "endif
 
+"NeoBundle 'mattn/jscomplete-vim'
+"NeoBundle 'myhere/vim-nodejs-complete'
+autocmd FileType javascript :setl omnifunc=jscomplete#CompleteJS
+
+"NeoBundle 'scrooloose/syntastic'
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=2
+let g:syntastic_mode_map = {'mode': 'passive'} 
+augroup AutoSyntastic
+    autocmd!
+    autocmd InsertLeave,TextChanged * call s:syntastic() 
+augroup END
+function! s:syntastic()
+    w
+    SyntasticCheck
+endfunction
+" cppの
+let g:syntastic_cpp_auto_refresh_includes = 1
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+let g:syntastic_cpp_include_dirs = [ '/Users/tsuchidayuuki/Documents/cpp/boost/include' ]
