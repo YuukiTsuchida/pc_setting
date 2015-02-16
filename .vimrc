@@ -241,7 +241,7 @@ if has('vim_starting')
 	\ }
     
     "syntaxチェック
-	NeoBundle 'scrooloose/syntastic'
+"	NeoBundle 'scrooloose/syntastic'
 
 	" evernote連携
 	NeoBundle 'kakkyz81/evervim'
@@ -287,7 +287,8 @@ if has('vim_starting')
 	NeoBundle "vim-scripts/ruby-matchit"
 	NeoBundle "basyura/unite-rails"
 
-	
+    "Xcode
+    NeoBundle 'https://YuukiTsuchida@bitbucket.org/YuukiTsuchida/xcodebuild.vim.git'
 
     "自作
     NeoBundle 'YuukiTsuchida/ctags-auto'
@@ -625,19 +626,19 @@ autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
 
 
 "NeoBundle 'scrooloose/syntastic'
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=2
-let g:syntastic_mode_map = {'mode': 'passive'} 
-augroup AutoSyntastic
-    autocmd!
-    autocmd InsertLeave,TextChanged * call s:syntastic() 
-augroup END
-function! s:syntastic()
-    w
-    SyntasticCheck
-endfunction
-" cppの
-let g:syntastic_cpp_auto_refresh_includes = 1
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_cpp_include_dirs = [ '/Users/tsuchidayuuki/Documents/cpp/boost/include' ]
+"let g:syntastic_enable_signs=1
+"let g:syntastic_auto_loc_list=2
+"let g:syntastic_mode_map = {'mode': 'passive'} 
+"augroup AutoSyntastic
+"    autocmd!
+"    autocmd InsertLeave,TextChanged * call s:syntastic() 
+"augroup END
+"function! s:syntastic()
+"    w
+"    SyntasticCheck
+"endfunction
+"" cppの
+"let g:syntastic_cpp_auto_refresh_includes = 1
+"let g:syntastic_cpp_compiler = 'clang++'
+"let g:syntastic_cpp_compiler_options = '-std=c++11'
+"let g:syntastic_cpp_include_dirs = [ '/Users/tsuchidayuuki/Documents/cpp/boost/include' ]
