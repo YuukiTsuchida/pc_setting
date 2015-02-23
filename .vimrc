@@ -96,7 +96,10 @@ augroup END
 "カレントディレクトリを編集中ファイルの位置に
 augroup grlcd
 	autocmd!
-	autocmd BufEnter * lcd %:p:h
+	autocmd BufEnter * 
+                \if !get( g:, "is_quickrun_started", 0 )
+                \|  execute ":lcd " . expand("%:p:h")
+                \| endif
 augroup END
 
 "$TODAYと入力すると日付に変換される
@@ -232,6 +235,7 @@ if has('vim_starting')
       \ }}
 
 	" cs
+
 	NeoBundleLazy 'nosami/Omnisharp', {
 	\   'autoload': {'filetypes': ['cs']},
 	\   'build': {
@@ -239,7 +243,7 @@ if has('vim_starting')
 	\     'unix': 'xbuild server/OmniSharp.sln',
 	\   }
 	\ }
-    
+        
     "syntaxチェック
 "	NeoBundle 'scrooloose/syntastic'
 
@@ -292,6 +296,7 @@ if has('vim_starting')
 
     "自作
     NeoBundle 'YuukiTsuchida/ctags-auto'
+    NeoBundle 'YuukiTsuchida/local-vim-setting'
 call neobundle#end()
 
 endif
@@ -596,27 +601,10 @@ nnoremap - :Switch<cr>
 """""""""" cpp setting """"""""""""""""""""""""""""""
 " インクルードディレクトリのパスを設定
 let g:marching_include_paths = [
-\   "/Applications/Android/boost_1_55_0",
 \	"/Users/tsuchidayuuki/Library/Developer/android/android-ndk-r9d/sources/cxx-stl/llvm-libc++/libcxx/include",
 \	"/Users/tsuchidayuuki/Library/Developer/android/android-ndk-r9d/platforms/android-14/arch-arm/usr/include",
-\	"/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni",
-\	"/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/mautils",
-\  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/tinyxml",
-\  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/curl/include/curl",
-\  "/Users/tsuchidayuuki/Documents/bx56amazon/gitsvn/maav/jni/openssl/include/openssl",
 \]
 
-"set tags=$HOME/Documents/bx56amazon/gitsvn/maav/tags
-
-" tagsの設定
-" gitのルートに存在するtagsを取得する
-"let top = system("git rev-parse --show-toplevel")
-"echo top
-"if v:shell_error == 0
-"    echo ( top . "/tags" )
-"    echo join([top, '/tags'], '' )
-"    set tags=top
-"endif
 
 "NeoBundle 'mattn/jscomplete-vim'
 "NeoBundle 'myhere/vim-nodejs-complete'
@@ -624,21 +612,22 @@ let g:marching_include_paths = [
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
 
+"NeoBundle 'quickrun
+" QuickRun 中かどうかを判定する
+let g:is_quickrun_started = 0
 
-"NeoBundle 'scrooloose/syntastic'
-"let g:syntastic_enable_signs=1
-"let g:syntastic_auto_loc_list=2
-"let g:syntastic_mode_map = {'mode': 'passive'} 
-"augroup AutoSyntastic
-"    autocmd!
-"    autocmd InsertLeave,TextChanged * call s:syntastic() 
-"augroup END
-"function! s:syntastic()
-"    w
-"    SyntasticCheck
-"endfunction
-"" cppの
-"let g:syntastic_cpp_auto_refresh_includes = 1
-"let g:syntastic_cpp_compiler = 'clang++'
-"let g:syntastic_cpp_compiler_options = '-std=c++11'
-"let g:syntastic_cpp_include_dirs = [ '/Users/tsuchidayuuki/Documents/cpp/boost/include' ]
+let s:hook = {
+\   "name" : "is_started",
+\   "kind" : "hook",
+\}
+
+function! s:hook.init(...)
+    let g:is_quickrun_started = 1
+endfunction
+
+function! s:hook.sweep(...)
+    let g:is_quickrun_started = 0
+endfunction
+
+call quickrun#module#register(s:hook, 1)
+unlet s:hook
