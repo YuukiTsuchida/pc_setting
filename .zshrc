@@ -5,6 +5,7 @@ export NDK_ROOT=$HOME/Library/Developer/android/android-ndk-r10d
 export ANDROID_NDK_HOME=$NDK_ROOT
 export ANDROID_SDK_ROOT=$HOME/Library/Developer/android/sdk
 export ANT_ROOT=/usr/local/bin
+export CLANG_3_5=$HOME/clang3.5/bin
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT=/Users/tsuchidayuuki/cocos2d-x/tools/cocos2d-console/bin
@@ -51,6 +52,10 @@ StartOmniServer()
 mono $HOME/.vim/bundle/neobundle/plugins/Omnisharp/server/OmniSharp/bin/Debug/OmniSharp.exe -p 2000 -s $1;
 }
 
+Clang_3_5()
+{
+    export PATH=$CLANG_3_5:$PATH
+}
 # pythonbrew
 #if [ -s "$HOME/.pythonbrew/etc/bashrc" ]; then
 #    source "$HOME/.pythonbrew/etc/bashrc"
