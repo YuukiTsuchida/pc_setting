@@ -7,8 +7,7 @@
 *
 * Author : yuuki tsuchida.
 *============================================================================*/
-#ifndef __H_
-#define __H_
+#pragma once
 
 //#include
 

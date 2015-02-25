@@ -87,7 +87,7 @@ let b:match_words = "<:>,(:),{:},[:],\</*\>:\<*/\>,\<#if\>:\<#endif\>"
 augroup templateload
 	autocmd!
 	autocmd BufNewFile *.cpp  0r $HOME/.vim/template/cpp_template.cpp
-	autocmd BufNewFile *.h    0r $HOME/.vim/template/cpp_template.h
+	autocmd BufNewFile *.hpp  0r $HOME/.vim/template/cpp_template.hpp
 	autocmd BufNewFile *.java 0r $HOME/.vim/template/java_template.java
 	autocmd BufNewFile *.py   0r $HOME/.vim/template/python_template.py
 	autocmd BufNewFile *.rb   0r $HOME/.vim/template/ruby_template.rb
