@@ -1,6 +1,13 @@
 "windowsの環境をmacに合わせるため
 set runtimepath+=$HOME/.vim
 
+"カラースキーマ設定
+"set background = dark
+"colorscheme solarized
+
+"フォント設定
+set guifont=Ricty:h15
+
 "syntaxのon
 syntax on
 
@@ -209,6 +216,7 @@ if has('vim_starting')
     NeoBundle 'osyo-manga/unite-quickfix'
 
 	NeoBundle 'sjl/gundo.vim'
+    NeoBundle 'thinca/vim-qfreplace'
 
 	"cpp
 "	NeoBundle "vim-scripts/taglist.vim"
@@ -245,9 +253,15 @@ if has('vim_starting')
 	\     'unix': 'xbuild server/OmniSharp.sln',
 	\   }
 	\ }
-        
+
+    NeoBundleLazy 'OrangeT/vim-csharp', { 'autoload': { 'filetypes': [ 'cs', 'csi', 'csx' ] } }
+    NeoBundle 'tpope/vim-dispatch'
+
     "syntaxチェック
-"	NeoBundle 'scrooloose/syntastic'
+    NeoBundle 'scrooloose/syntastic'
+     
+    "glsl syntax highlight
+    NeoBundle 'tikhomirov/vim-glsl'
 
 	" evernote連携
 	NeoBundle 'kakkyz81/evervim'
@@ -296,9 +310,14 @@ if has('vim_starting')
     "Xcode
     NeoBundle 'https://YuukiTsuchida@bitbucket.org/YuukiTsuchida/xcodebuild.vim.git'
 
+    "翻訳
+    NeoBundle 'daisuzu/translategoogle.vim'
+
     "自作
     NeoBundle 'YuukiTsuchida/ctags-auto'
     NeoBundle 'YuukiTsuchida/local-vim-setting'
+
+
 call neobundle#end()
 
 endif
@@ -331,6 +350,9 @@ let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist'
         \ }
+
+" unite.vim都の連携
+let g:OmniSharp_selector_ui = 'unite'  " Use unite.vim
 
 " Plugin key-mappings.
 inoremap <expr><C-g>     neocomplete#undo_completion()
@@ -440,9 +462,13 @@ noremap <silent> [unite]ofm :Unite file_mru<CR>
 noremap <silent> [unite]bm	:Unite bookmark<CR>
 "ブックマークに追加
 noremap <silent> [unite]ad :UniteBookmarkAdd<CR>
+" Uniteの結果を再度表示
+noremap <silent> [unite]resume :UniteResume<CR>
+
 " Uniteを<ESC>二回で終了する
 au FileType unite nnoremap <silent> <buffer> <ESC><ESC> :q<CR>
 au FileType unite inoremap <silent> <buffer> <ESC><ESC> <ESC>:q<CR>
+
 
 " unite-grepのバックエンドをagに切り替える
 " http://qiita.com/items/c8962f9325a5433dc50d
@@ -658,3 +684,33 @@ let g:rbpt_colorpairs = [
     \ ['darkred',     'DarkOrchid3'],
     \ ['red',         'firebrick3'],
     \ ]
+
+
+" NeoBundle 'daisuzu/translategoogle.vim'
+let g:translategoogle_default_sl = 'ja'
+let g:translategoogle_default_tl = 'en'
+
+nnoremap [translategoogle]    <Nop>
+nmap     <Space>g [translategoogle]
+" translategoogle起動
+noremap <silent> [translategoogle]j :TranslateGoogleCmd --sl=ja --tl=en
+noremap <silent> [translategoogle]e :TranslateGoogleCmd --sl=en --tl=ja
+
+
+
+"NeoBundle 'kien/ctrlp.vim'
+" ctrl-pでagを利用する（速度向上）
+if executable('ag')
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
+endif
+
+" NeoBundle 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0

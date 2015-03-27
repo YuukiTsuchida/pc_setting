@@ -2,17 +2,21 @@ snippet classdoxy
 abbr    classdoxy
     /**
 	 * <summary>
-	 * ${0:clasname}. 
+	 * ${1:clasname}. 
 	 * </summary>
 	 */
 
 snippet funcdoxy
 abbr    funcdoxy
     /// <summary>
-	/// ${0}.
+	/// ${1:summary}.
 	/// </summary>
-	/// <param name="${1}"> .</param>
+	/// <param name="${2:param}"> .</param>
     /// <returns>  </returns>
+
+snippet serializefield
+abbr    serializefield
+    [SerializeField] private 
 
 snippet editormultiple
 abbr editmultiple
@@ -20,64 +24,85 @@ abbr editmultiple
 
 snippet editorcustom
 abbr customeditor
-    [CustomEditor(typeof(${0:class}))]
+    [CustomEditor( typeof( ${1:class} ) )]
+
+snippet serializable
+abbr SerializeField
+    [Serializable]
 
 snippet enumfor
 abbr enumfor
-    foreach( ${0:enum} item in Enum.GetValue( typeof( ${0:enum} ) ) )
+    foreach( ${1:enum} item in Enum.GetValue( typeof( ${2:enum} ) ) )
     {
     }
 
 snippet awake
 abbr    Awake
-    private void Awake()
+    protected void Awake()
     {
     }
 
 snippet update
 abbr    Update
-    private void Update()
+    protected void Update()
     {
     }
 
-snippet LateUpdate
+snippet lastupdate 
 abbr update
-    private void LateUpdate()
+    protected void LateUpdate()
     {
     }
 
-snippet FixedUpdate
+snippet fixedupdate
 abbr update
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
     }
 snippet gui
 abbr OnGUI
-    private void OnGUI()
+    protected void OnGUI()
     {
     }
 snippet destroy
 abbr OnDestroy
-    private void OnDestroy()
+    protected void OnDestroy()
     {
     }
-snippet componentmenu
+snippet addcomponentmenu
 abbr AddComponentMenu
-    [AddComponentMenu("${0:path}")]
+    [AddComponentMenu("${1:path}")]
 
 snippet menuitem
 abbr MenuItem
-    [MenuItem("${0:path}")]
+    [MenuItem("${1:path}")]
 
 snippet triggerenter
 abbr OnTriggerEnter
-    private void OnTriggerEnter( Collider collider )
+    protected void OnTriggerEnter( Collider collider )
 	{
 	}
 
 snippet triggerexit
 abbr OnTriggerExit
-    private void OnTriggerExit( Collider collider )
+    protected void OnTriggerExit( Collider collider )
 	{
 	}
 
+snippet start
+addr Start
+    protected void Start()
+    {
+    }
+
+snippet process
+addr Process
+    public override void Process()
+    {
+    }
+
+snippet collisionstay2d
+addr OnCollisionStay2D
+    public void OnCollisionStay2D( Collision2D collision )
+    {
+    }
