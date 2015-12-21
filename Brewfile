@@ -1,11 +1,12 @@
 update
+upgrade
 
-tap phinze/cask
+#tap phinze/cask
 
-cleanup
+#cleanup
 
 
-install brew-cask
+#install brew-cask
 
 # ruby
 install rsense
@@ -13,10 +14,12 @@ install rsense
 # tags
 install ctags
 
-cask update
+install nodebrew
 
-cask install virtualbox
-cask install vagrant
+#cask update
+#
+#cask install virtualbox
+#cask install vagrant
 
 
 cask cleanup

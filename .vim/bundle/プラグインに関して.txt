@@ -1,0 +1,6 @@
+project.vim - vimのプロジェクト管理
+Pydiction - pythonの補完など
+vim-bufexplorer - vimのバッファ表示 <C-b>で起動
+vimproc + vimshell -- vimshell
+vim-indent-guides - インデントにハイライト
+vim-quickrun - vimからプログラムの即座起動

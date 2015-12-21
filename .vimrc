@@ -160,6 +160,10 @@ let &statusline='%F%m%r%h%w [FORMAT=%{&ff}] [ENC=%{&fileencoding}] [TYPE=%Y] [AS
 "タグ複数あることを考慮してキーバンドを上書き
 nnoremap <C-]> g<C-]> 
 
+
+" jsonのダブルクォート非表示を無効に
+autocmd Filetype json setl conceallevel=0
+
 """""""" 以下プラグインの関連設定  """"""""""""""""
 
 """" プラグイン管理プラグイン設定 """""""""
@@ -290,9 +294,16 @@ if has('vim_starting')
 
     "nodejs
     NeoBundle 'moll/vim-node'
-    NeoBundle 'mattn/jscomplete-vim'
-    NeoBundle 'myhere/vim-nodejs-complete'
-    NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+"     NeoBundle 'mattn/jscomplete-vim'
+"     NeoBundle 'myhere/vim-nodejs-complete'
+"     NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+    NeoBundleLazy 'marijnh/tern_for_vim', {
+                \   'build': {'mac': 'npm install'},
+                \   'autoload': {'filetypes': ['javascript', 'typescript', 'coffeescript']}
+                \ }
+
+    " coffee-script
+    NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': [ 'coffee' ] } }
 
 	" clojure plugin
 	NeoBundle 'guns/vim-clojure-static'
@@ -312,6 +323,12 @@ if has('vim_starting')
 
     "翻訳
     NeoBundle 'daisuzu/translategoogle.vim'
+
+    " TypeScript
+    NeoBundle 'Quramy/tsuquyomi'
+    
+    " Go言語
+    NeoBundle 'fatih/vim-go'
 
     "自作
     NeoBundle 'YuukiTsuchida/ctags-auto'
@@ -441,7 +458,7 @@ if neobundle#is_installed('neocomplete.vim')
 	" Enable omni completion.
 	autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 	autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-	autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+" 	autocmd FileType javascript,coffee setlocal omnifunc=javascriptcomplete#CompleteJS
 	autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 	autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -638,7 +655,18 @@ let g:marching_include_paths = [
 "NeoBundle 'myhere/vim-nodejs-complete'
 "autocmd FileType javascript :setl omnifunc=jscomplete#CompleteJS
 "autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
+" autocmd FileType javascript setlocal omnifunc=nodejscomplete#CompleteJS
+" if !exists('g:neocomplcache_omni_functions')
+"   let g:neocomplcache_omni_functions = {}
+" endif
+" let g:neocomplcache_omni_functions.javascript = 'nodejscomplete#CompleteJS'
+"
+" let g:node_usejscomplete = 1
+
+"NeoBundle 'marijnh/tern_for_vim'
+let g:neocomplete#force_omni_input_patterns.javascript = '[^. \t]\.\w*'
+autocmd FileType javascript setlocal omnifunc=tern#Complete
+
 
 "NeoBundle 'quickrun
 " QuickRun 中かどうかを判定する
@@ -714,3 +742,19 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+
+" Go言語
+"NeoBundle 'fatih/vim-go'
+"ハイライトの指定
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+let g:go_fmt_autosave = 0  " 保存時のオートフォーマットを無効
+let g:go_fmt_command = "goimports"  " GoFmt実行で利用するコマンド
+if !exists('g:neocomplete#omni_patterns')
+    let g:neocomplete#omni_patterns = {}
+endif
+let g:neocomplete#omni_patterns.go = '\h\w*\.\?'

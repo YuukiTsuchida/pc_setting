@@ -17,8 +17,8 @@ export PATH=$PATH:$NDK_ROOT
 export PATH=$PATH:/usr/local/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 #export PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
-export PATH=/usr/local/opt/php54/bin:$PATH
-export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig 
+#export PATH=/usr/local/opt/php54/bin:$PATH
+#export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig 
 export PATH=/Users/tsuchidayuuki/.pyenv/bin:$PATH
 
 export NDK_CCACHE=/usr/local/bin/ccache
@@ -37,9 +37,9 @@ export BITBUCKET=$HOME/Documents/bitbucket/
 alias jenkins='java -jar /usr/local/opt/jenkins/libexec/jenkins.war'
 
 # GO言語
-export PATH=$HOME/path/google_appengine:$PATH
-export GOROOT=/usr/local/Cellar/go/1.0.3
-export GOPATH=$HOME/_go 
+export GOROOT=/usr/local/Cellar/go/1.5/libexec
+export GOPATH=$HOME/_go/1.5
+export PATH=$GOPATH/bin:$PATH
 
 export PATH=$PATH:$HOME/svm 
 if [[ -d "${HOME}/.svm/current/rt" ]]; then
