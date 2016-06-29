@@ -164,7 +164,11 @@ nnoremap <C-]> g<C-]>
 " jsonのダブルクォート非表示を無効に
 autocmd Filetype json setl conceallevel=0
 
+
+let $PATH = "~/.pyenv/shims:".$PATH
+
 """""""" 以下プラグインの関連設定  """"""""""""""""
+
 
 """" プラグイン管理プラグイン設定 """""""""
 "vimプラグインを.vim/bundleに
@@ -196,7 +200,8 @@ if has('vim_starting')
 	  \ 'build' : {
 		\ 'windows' : 'make -f make_mingw32.mak',
 		\ 'cygwin' : 'make -f make_cygwin.mak',
-		\ 'mac' : 'make -f make_mac.mak',
+		\ 'mac' : 'make',
+		\ 'linux' : 'make',
 		\ 'unix' : 'make -f make_unix.mak',
 	  \ },
 	\ }
@@ -238,6 +243,13 @@ if has('vim_starting')
 		  \   "mac": "pip install jedi",
 		  \   "unix": "pip install jedi",
 		  \ }}
+
+    NeoBundleLazy "lambdalisue/vim-pyenv", {
+      \ "depends": ['davidhalter/jedi-vim'],
+      \ "autoload": {
+      \   "filetypes": ["python", "python3", "djangohtml"]
+      \ }}
+
 
 	" ctags
 	NeoBundle 'szw/vim-tags'
@@ -426,7 +438,7 @@ au Filetype cs noremap <silent>[omnisharp]format	:OmniSharpCodeFormat<CR>
 " vimshell  guiの時読み込む
 if has('mac') && has('gui')
 "	let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_mac.so'
-	let g:vimproc_dll_path = $HOME . '/.vim/bundle/neobundle/plugins/vimproc/autoload/vimproc_mac.so'
+	let g:vimproc_dll_path = $HOME . '/.vim/bundle/neobundle/plugins/vimproc/lib/vimproc_mac.so'
 elseif('win64') && has('gui')
 	let g:vimproc_dll_path = $VIMRUNTIME . '/autoload/vimproc_win64.dll'
 endif
@@ -473,6 +485,7 @@ nmap     <Space>u [unite]
 noremap <silent> [unite]bu :Unite buffer<CR>
 "ファイラーの立ち上げ
 noremap <silent> [unite]f :Unite file<CR>
+noremap <silent> [unite]g :Unite grep<CR>
 " Unite file_mru
 noremap <silent> [unite]ofm :Unite file_mru<CR>
 "ブックマーク一覧を開く

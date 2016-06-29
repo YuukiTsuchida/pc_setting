@@ -5,7 +5,7 @@ export NDK_ROOT=$HOME/Library/Developer/android/android-ndk-r10d
 export ANDROID_NDK_HOME=$NDK_ROOT
 export ANDROID_SDK_ROOT=$HOME/Library/Developer/android/sdk
 export ANT_ROOT=/usr/local/bin
-export CLANG_3_5=$HOME/clang3.5/bin
+export CLANG=$HOME/clang/bin
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
 export COCOS_CONSOLE_ROOT=/Users/tsuchidayuuki/cocos2d-x/tools/cocos2d-console/bin
@@ -13,6 +13,7 @@ export COCOS_CONSOLE_ROOT=/Users/tsuchidayuuki/cocos2d-x/tools/cocos2d-console/b
 export PATH=$COCOS_CONSOLE_ROOT:$PATH
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/23.0.1
 export PATH=$PATH:$NDK_ROOT
 export PATH=$PATH:/usr/local/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
@@ -23,6 +24,7 @@ export PATH=/Users/tsuchidayuuki/.pyenv/bin:$PATH
 
 export NDK_CCACHE=/usr/local/bin/ccache
 
+export XDG_CONFIG_HOME=$HOME/.config
 
 #node
 export PATH=$PATH:$HOME/.nodebrew/current/bin
@@ -31,6 +33,7 @@ export PATH=$PATH:$HOME/.nodebrew/current/bin
 
 eval "$(pyenv init -)"
 export PYENV_ROOT=/Users/tsuchidayuuki/.pyenv
+alias brew="env PATH=${PATH/\/Users\/tsuchidayuuki\/.pyenv\/shims:/} brew"
 
 export BITBUCKET=$HOME/Documents/bitbucket/
 
@@ -39,6 +42,7 @@ alias jenkins='java -jar /usr/local/opt/jenkins/libexec/jenkins.war'
 # GO言語
 export GOROOT=/usr/local/Cellar/go/1.5/libexec
 export GOPATH=$HOME/_go/1.5
+export PATH=$GOROOT/bin:$PATH
 export PATH=$GOPATH/bin:$PATH
 
 export PATH=$PATH:$HOME/svm 
@@ -52,9 +56,9 @@ StartOmniServer()
 mono $HOME/.vim/bundle/neobundle/plugins/Omnisharp/server/OmniSharp/bin/Debug/OmniSharp.exe -p 2000 -s $1;
 }
 
-Clang_3_5()
+ChangeClang()
 {
-    export PATH=$CLANG_3_5:$PATH
+    export PATH=$CLANG:$PATH
 }
 # pythonbrew
 #if [ -s "$HOME/.pythonbrew/etc/bashrc" ]; then
@@ -65,6 +69,8 @@ Clang_3_5()
 #    alias workon="pythonbrew venv use"
 #fi
 
+# IBM Blue Mix
+alias bluemix='cf'
 
 #######
 # ruby version管理用のrvm設定
