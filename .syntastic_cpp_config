@@ -1,0 +1,5 @@
+-Iexternal/glew/include
+-Iexternal/glfw/include
+-Iexternal/freetype/include
+-Iexternal/boost/include
+

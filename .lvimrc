@@ -1,0 +1,36 @@
+
+" インクルードディレクトリのパスを設定
+let g:marching_include_paths += [
+\   "/Users/tsuchidayuuki/Documents/github/opengl/external/boost/include",
+\   "/Users/tsuchidayuuki/Documents/github/opengl/external/glfw/include",
+\   "/Users/tsuchidayuuki/Documents/github/opengl/external/glew/include",
+\   "/Users/tsuchidayuuki/Documents/github/opengl/opengl",
+\]
+
+let g:quickrun_config = {
+            \   "cmake":{
+            \       "exec":"cmake ../",
+            \       "runner" : "vimproc",
+            \       "outputter/buffer/into" : 1,
+            \       "hook/cd/directory": '/Users/tsuchidayuuki/Documents/github/opengl/build',
+            \   },
+            \   "make":{
+            \       "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+            \       "hook/unite_quickfix/enable_failure" : 1,
+            \       "hook/close_quickfix/enable_exit" : 1,
+            \       "hook/close_buffer/enable_empty_data" : 1,
+            \       "hook/close_buffer/enable_failure" : 1,
+            \       "exec":["cmake ../", "make", "./myapp" ],
+            \       "hook/time/enable":1,
+            \       "hook/cd/directory": '/Users/tsuchidayuuki/Documents/github/opengl/build',
+            \       "runner" : "vimproc",
+            \       "outputter" : "multi:buffer:quickfix",
+            \       "hook/shabadoubi_touch_henshin/enable" : 1,
+            \       "hook/shabadoubi_touch_henshin/wait" : 20,
+            \       "outputter/buffer/into" : 1,
+            \   },
+            \}
+
+let g:syntastic_cpp_config = "/Users/tsuchidayuuki/Documents/github/opengl/.syntastic_cpp_config"
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -Wall'
