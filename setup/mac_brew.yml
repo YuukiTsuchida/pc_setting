@@ -1,0 +1,124 @@
+- hosts: localhost
+  connection: local
+####
+# サーバーからの情報収集
+####
+  gather_facts: no
+  become: no
+###
+# 変数の定義
+###
+  vars:
+    homebrew_taps:
+      - caskroom/cask
+      - neovim/homebrew-neovim
+      - sanemat/font
+    homebrew_packages:
+      - { name: git }
+      - { name: openssl}
+      - { name: openssl, state: linked, install_options: force }
+      - { name: cmake }
+      - { name: tig }
+      - { name: neovim }
+      - { name: mercurial }
+      - { name: mono }
+      - { name: nodebrew }
+      - { name: pyenv }
+      - { name: ghc }
+      - { name: autoconf }
+      - { name: automake }
+      - { name: pkg-config }
+      - { name: argon/mas/mas }
+      - { name: ctags }
+    homebrew_cask_packages:
+      - { name: google-chrome }
+      - { name: google-japanese-ime }
+      - { name: vivaldi }
+      - { name: vagrant }
+      - { name: vagrant-manager }
+      - { name: virtualbox }
+      - { name: visual-studio-code }
+      - { name: macvim }
+      - { name: iterm2 }
+      - { name: xquartz }
+      - { name: dropbox }
+      - { name: google-drive }
+   #   - { name: dash }
+      - { name: alfred }
+      - { name: amazon-drive }
+      - { name: kindle }
+    mac_defaults_setting:
+      - {
+        domain: com.apple.ImageCapture,
+        key: disableHotPlug,
+        type: bool,
+        value: false
+      }
+      - {
+        domain: com.apple.finder,
+        key: AppleShowAllFiles,
+        type: bool,
+        value: true
+      }
+      - {
+        domain: com.apple.dock,
+        key: autohide,
+        type: boolean,
+        value: true
+      }
+    app_store:
+      - { id: 467939042 } # Growl
+      - { id: 948176063 } # Boom
+      - { id: 404221531 } # Awaken
+      - { id: 507257563 } # Sip
+      - { id: 458887729 } # Translate Tab
+      - { id: 420939835 } # Clipboard History
+      - { id: 445770608 } # Go2Shell
+      - { id: 748212890 } # Memory Cleaner
+      - { id: 823766827 } # OneDrive
+      - { id: 524576324 } # SmartZipper
+      - { id: 784801555 } # OneNote
+      - { id: 975974524 } # RapidCopy
+      - { id: 98630448 } # Kiwi for Gmail
+      - { id: 568494494 } # Pocket
+      - { id: 497799835 } # xcode
+      - { id: 568903335 } # 1pass
+  tasks:
+    # brew tap
+    - name: install taps of homebrew
+      homebrew_tap: tap={{ item }} state=present
+      with_items: "{{ homebrew_taps }}"
+    # brew
+    - name: homebrew update
+      homebrew: update_homebrew=yes
+    - name: homebrew packages install
+      homebrew: name="{{ item.name }}" state="{{ item.state|default('latest')}}" install_options="{{ item.install_options|default() }}"
+      with_items: "{{ homebrew_packages }}"
+    # brew cask
+    - name: homebrew cask packages install
+      homebrew_cask: name="{{ item.name }}" state=present
+      with_items: "{{ homebrew_cask_packages }}"
+    - name: mac default setting
+      command: defaults write {{ item.domain }} {{ item.key }} -{{ item.type }} {{ item.value }}
+      with_items: "{{ mac_defaults_setting }}"
+      when: mac_defaults_setting
+    - name: finder reboot
+      command: killall Finder
+    - name: dock reboot
+      command: killall Dock
+    # ricty
+    - name: ricty install
+      homebrew: name=ricty
+    - name: ricty copy
+      shell: cp -f $(brew --cellar ricty)/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
+      args:
+        creates: ~/Library/Fonts/Ricty-Bold.ttf
+    - name: ricty refresh
+      command: fc-cache -vf
+    # app store
+    # -e "thorough=true" を指定する
+    # 例: ansible-playbook localhost.yaml -e 'thorough=true'
+    - name: app store download
+      command: mas install "{{ item.id }}"
+      with_items: "{{ app_store }}"
+      when: thorough == "true"
