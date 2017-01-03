@@ -1,0 +1,19 @@
+// 既定の設定を上書きするには、このファイル内に設定を挿入します
+{
+    "editor.renderWhitespace": true,
+    "editor.insertSpaces": true,
+    "editor.fontSize": 14,
+
+    // ファイルとフォルダーを除外するための glob パターンを構成します。
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/.DS_Store": true
+    } ,
+
+    "vim.useCtrlKeys": true,
+    "vim.useSystemClipboard": true,
+    "vim.hlsearch": true,
+    "vim.autoindent": true,
+}
