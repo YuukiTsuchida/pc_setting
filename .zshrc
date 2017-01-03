@@ -1,7 +1,7 @@
 ######
 # パス設定
 #####
-export NDK_ROOT=$HOME/Library/Developer/android/android-ndk-r10d
+export NDK_ROOT=$HOME/Library/Developer/android/ndk
 export ANDROID_NDK_HOME=$NDK_ROOT
 export ANDROID_SDK_ROOT=$HOME/Library/Developer/android/sdk
 export ANT_ROOT=/usr/local/bin
@@ -19,7 +19,7 @@ export PATH=$PATH:/usr/local/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 #export PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 #export PATH=/usr/local/opt/php54/bin:$PATH
-#export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig 
+#export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
 export PATH=/Users/tsuchidayuuki/.pyenv/bin:$PATH
 
 export NDK_CCACHE=/usr/local/bin/ccache
@@ -40,12 +40,12 @@ export BITBUCKET=$HOME/Documents/bitbucket/
 alias jenkins='java -jar /usr/local/opt/jenkins/libexec/jenkins.war'
 
 # GO言語
-export GOROOT=/usr/local/Cellar/go/1.5/libexec
-export GOPATH=$HOME/_go/1.5
-export PATH=$GOROOT/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
+#
+[[ -s "/Users/tsuchidayuuki/.gvm/scripts/gvm" ]] && source "/Users/tsuchidayuuki/.gvm/scripts/gvm"
+#export PATH=$GOROOT/bin:$PATH
+#export PATH=$GOPATH/bin:$PATH
 
-export PATH=$PATH:$HOME/svm 
+export PATH=$PATH:$HOME/svm
 if [[ -d "${HOME}/.svm/current/rt" ]]; then
 	export SCALA_HOME=${HOME}/.svm/current/rt
 	export PATH=$PATH:$SCALA_HOME/bin
@@ -98,9 +98,9 @@ setopt prompt_subst
 PROMPT=$'%/%% %f%1v''${vcs_info_msg_0_}'$'\n%# '
 
 # ターミナルでmacvimを使用する
-export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
-alias vi='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
-alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
+#export EDITOR=/Applications/MacVim.app/Contents/MacOS/Vim
+alias vi='vim'
+#alias vim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/Vim "$@"'
 
 
 
@@ -155,7 +155,7 @@ setopt list_packed
 
 # = 以降でも補完できるようにする( --prefix=/usr 等の場合)
 setopt magic_equal_subst
- 
+
 # 補完候補リストの日本語を正しく表示
 setopt print_eight_bit
 
@@ -187,7 +187,7 @@ setopt no_beep               # ビープ音を消す
 ## zshのhomebrew補完
 #if [ -f ~/.zsh/auto-fu.zsh ]; then
 #    source ~/.zsh/auto-fu.zsh
-#    
+#
 #    zle -N zle-line-init
 #    zstyle ':completion:*' completer _oldlist _complete
 #fi
@@ -253,3 +253,5 @@ export PATH=$COCOS_X_ROOT:$PATH
 # Add environment variable COCOS_TEMPLATES_ROOT for cocos2d-x
 export COCOS_TEMPLATES_ROOT=/Users/tsuchidayuuki/cocos2d-x/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
+
+[[ -s "/Users/tsuchidayuuki/.gvm/scripts/gvm" ]] && source "/Users/tsuchidayuuki/.gvm/scripts/gvm"

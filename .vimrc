@@ -70,6 +70,9 @@ set laststatus=2
 "バッファを保存しなくても他のバッファを表示できるように
 set hidden
 
+" 検索のときに大文字、小文字を区別しない
+set ic
+
 "buftabsでファイル名のみを表示
 let buftabs_only_basename=1
 "bufftabsをステータスラインに表示
@@ -179,7 +182,9 @@ filetype off
 
 
 " yank → clipbord
-set clipboard=unnamed,autoselect
+"set clipboard=unnamed,autoselect
+set clipboard&
+set clipboard^=unnamed,autoselect
 
 "quickfix を <ESC><ESC>で閉じる
 au Filetype qf noremap <silent> <buffer> <ESC><ESC> :q<CR>
@@ -219,6 +224,12 @@ if has('vim_starting')
 	NeoBundle 'vim-scripts/YankRing.vim'
 
 	NeoBundle 'kien/ctrlp.vim'
+    " ctrl-p matcher
+"     NeoBundle 'nixprime/cpsm', {
+"         \ 'build': {
+"         \   'others': 'sh install.sh'
+"         \ }
+"     \ }
 
 	NeoBundle 'thinca/vim-quickrun'
     NeoBundle 'osyo-manga/shabadou.vim'
@@ -280,7 +291,6 @@ if has('vim_starting')
     NeoBundle 'tikhomirov/vim-glsl'
 
 	" evernote連携
-	NeoBundle 'kakkyz81/evervim'
 	"NeoBundle 'tyru/restart.vim'
 	
 	"ソースのコメントインorアウト
@@ -745,6 +755,8 @@ if executable('ag')
   let g:ctrlp_use_caching = 0
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
 endif
+
+" let g:ctrlp_match_func = {'match': 'cpsm#CtrlPMatch'}
 
 " NeoBundle 'scrooloose/syntastic'
 set statusline+=%#warningmsg#
