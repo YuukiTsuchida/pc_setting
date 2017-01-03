@@ -3,7 +3,7 @@ set runtimepath+=$HOME/.vim
 
 "カラースキーマ設定
 "set background = dark
-"colorscheme solarized
+colorscheme solarized
 
 "フォント設定
 set guifont=Ricty:h15
