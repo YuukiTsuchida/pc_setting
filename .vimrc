@@ -6,7 +6,7 @@ set runtimepath+=$HOME/.vim
 colorscheme solarized
 
 "フォント設定
-set guifont=Myrica\ M:h15
+set guifont=MyricaM\ M:h15
 
 "syntaxのon
 syntax on
