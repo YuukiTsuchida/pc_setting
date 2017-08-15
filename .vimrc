@@ -6,7 +6,7 @@ set runtimepath+=$HOME/.vim
 colorscheme solarized
 
 "フォント設定
-set guifont=Ricty:h15
+set guifont=Myrica\ M:h15
 
 "syntaxのon
 syntax on
@@ -104,13 +104,13 @@ augroup templateload
 augroup END
 
 "カレントディレクトリを編集中ファイルの位置に
-augroup grlcd
-	autocmd!
-	autocmd BufEnter * 
-                \if !get( g:, "is_quickrun_started", 0 )
-                \|  execute ":lcd " . expand("%:p:h")
-                \| endif
-augroup END
+"augroup grlcd
+"	autocmd!
+"	autocmd BufEnter * 
+"                \if !get( g:, "is_quickrun_started", 0 )
+"                \|  execute ":lcd " . expand("%:p:h")
+"                \| endif
+"augroup END
 
 "$TODAYと入力すると日付に変換される
 let $TODAY = strftime('%Y%m%d')
@@ -351,6 +351,11 @@ if has('vim_starting')
     
     " Go言語
     NeoBundle 'fatih/vim-go'
+
+    " git
+    NeoBundle 'tpope/vim-fugitive'
+    NeoBundle 'gregsexton/gitv'
+    NeoBundle 'idanarye/vim-merginal'
 
     "自作
     NeoBundle 'YuukiTsuchida/ctags-auto'
@@ -783,3 +788,7 @@ if !exists('g:neocomplete#omni_patterns')
     let g:neocomplete#omni_patterns = {}
 endif
 let g:neocomplete#omni_patterns.go = '\h\w*\.\?'
+
+" git
+" gitv
+autocmd FileType git :setlocal foldlevel=99
