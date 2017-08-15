@@ -127,15 +127,6 @@
       command: killall Finder
     - name: dock reboot
       command: killall Dock
-    # ricty
-    - name: ricty install
-      homebrew: name=ricty
-    - name: ricty copy
-      shell: cp -f $(brew --cellar ricty)/*/share/fonts/Ricty*.ttf ~/Library/Fonts/
-      args:
-        creates: ~/Library/Fonts/Ricty-Bold.ttf
-    - name: ricty refresh
-      command: fc-cache -vf
     # app store
     # -e "thorough=true" を指定する
     # 例: ansible-playbook localhost.yaml -e 'thorough=true'
