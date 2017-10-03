@@ -27,8 +27,8 @@ export NDK_CCACHE=/usr/local/bin/ccache
 export XDG_CONFIG_HOME=$HOME/.config
 
 #node
-export PATH=$PATH:$HOME/.nodebrew/current/bin
-
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
 
 
 eval "$(pyenv init -)"
@@ -42,6 +42,7 @@ alias jenkins='java -jar /usr/local/opt/jenkins/libexec/jenkins.war'
 # GO言語
 #
 [[ -s "/Users/tsuchidayuuki/.gvm/scripts/gvm" ]] && source "/Users/tsuchidayuuki/.gvm/scripts/gvm"
+export GOROOT_BOOTSTRAP=$GOROOT
 #export PATH=$GOROOT/bin:$PATH
 #export PATH=$GOPATH/bin:$PATH
 

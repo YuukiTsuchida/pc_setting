@@ -1,0 +1,99 @@
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+hook_add = '''
+colorscheme solarized
+set background=dark
+'''
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
+hook_add = '''
+call denite#custom#var('file_rec', 'command',['ag', '--follow', '--nocolor', '--nogroup', '-g', ''])
+
+call denite#custom#var('grep', 'command', ['ag'])
+call denite#custom#var('grep', 'default_opts', ['-i', '--vimgrep'])
+call denite#custom#var('grep', 'recursive_opts', [])
+call denite#custom#var('grep', 'pattern_opt', [])
+call denite#custom#var('grep', 'separator', ['--'])
+call denite#custom#var('grep', 'final_opts', [])
+
+function! DeniteFileCreate(path)
+   call denite#start([{'name': 'file', 'args': ['new', a:path]}])
+endfunction
+command! -nargs=* DeniteFileNew call DeniteFileCreate(<f-args>)
+'''
+
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = 'let g:deoplete#enable_at_startup = 1'
+
+[[plugins]]
+repo = 'neomake/neomake'
+hook_add = '''
+autocmd! BufWritePost * Neomake
+let g:neomake_open_list = 2
+'''
+
+[[plugins]]
+repo = 'kien/ctrlp.vim'
+hook_add = '''
+if executable('ag')
+  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
+endif
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+'''
+
+[[plugins]]
+repo = 'Shougo/neoyank.vim'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'gregsexton/gitv'
+
+[[plugins]]
+repo = 'idanarye/vim-merginal'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+nnoremap <F9> :NERDTreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'Xuyuanp/nerdtree-git-plugin'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+let g:indent_guides_enable_on_vim_startup=1
+let g:indent_guides_color_change_percent=30
+let g:indent_guides_guide_size=1
+let g:indent_guides_start_level=2
+let g:solarized_termtrans = 1
+"hi IndentGuidesOdd  ctermbg=black
+"hi IndentGuidesEven ctermbg=darkgrey
+hi IndentGuidesOdd  guibg=red   ctermbg=3
+hi IndentGuidesEven guibg=green ctermbg=4
+'''
+
+[[plugins]]
+repo = 'AndrewRadev/switch.vim'
+hook_add = '''
+nnoremap - :Switch<cr>
+'''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+" \sc でカーソル行をコメントアウトor解除
+nmap \sc <Plug>(caw:I:toggle)
+vmap \sc <Plug>(caw:I:toggle)
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+

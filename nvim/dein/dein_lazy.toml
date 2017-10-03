@@ -1,0 +1,70 @@
+[[plugins]]
+repo = 'tpope/vim-dispatch'
+on_ft = 'cs'
+
+[[plugins]]
+repo = 'OmniSharp/omnisharp-vim'
+on_ft = 'cs'
+hook_add = '''
+let g:OmniSharp_host = "http://localhost:2000"
+
+let g:OmniSharp_selector_ui = 'ctrlp' 
+
+nnoremap [omnisharp]    <Nop>
+nmap <Space>os	[omnisharp]
+au Filetype cs noremap <silent>[omnisharp]gd		:OmniSharpGotoDefinition<CR>
+au Filetype cs noremap <silent>[omnisharp]fu		:OmniSharpFindUsages<CR>
+au Filetype cs noremap <silent>[omnisharp]ca		:OmniSharpGetCodeActions<CR>
+au Filetype cs noremap <silent>[omnisharp]rename	:OmniSharpRename<CR>
+au Filetype cs noremap <silent>[omnisharp]reload	:OmniSharpReloadSolution<CR>
+au Filetype cs noremap <silent>[omnisharp]format	:OmniSharpCodeFormat<CR>
+'''
+
+hook_post_update = '''
+if dein#util#_is_mac()
+    let cmd = 'cd server && xbuild'
+endif
+let g:dein#plugin.build = cmd
+'''
+
+[[plugins]]
+repo = 'Robzz/deoplete-omnisharp'
+on_ft = 'cs'
+
+[[plugins]]
+repo = 'OrangeT/vim-csharp'
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'neovim/python-client'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'davidhalter/jedi'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'zchee/deoplete-jedi'
+on_ft = 'python'
+
+[[plugins]]
+repo = 'elixir-editors/vim-elixir'
+on_ft = ['elixir', 'eelixir']
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_ft = ['elixir', 'eelixir']
+
+[[plugins]]
+repo = 'kbrw/elixir.nvim'
+on_ft = ['elixir', 'eelixir']
+hook_post_update = '''
+let g:dein#plugin.build = 'sh ./install.sh'
+'''
+
+[[plugins]]
+repo = 'avdgaag/vim-phoenix'
+on_ft = ['elixir', 'eelixir']

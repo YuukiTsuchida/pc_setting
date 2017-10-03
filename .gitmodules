@@ -4,3 +4,6 @@
 [submodule "auto-fu"]
 	path = auto-fu
 	url = git://github.com/hchbaw/auto-fu.zsh.git
+[submodule "nvim/plugins/dein.vim"]
+	path = nvim/plugins/dein.vim
+	url = https://github.com/Shougo/dein.vim.git

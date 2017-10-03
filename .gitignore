@@ -1,3 +1,5 @@
 .vim/bundle/neobundle/
 .DS_Store
 .netrwhist
+nvim/plugins/*
+!nvim/plugins/.gitkeep

@@ -27,7 +27,7 @@
       - { name: neovim }
       - { name: mercurial }
       - { name: mono }
-      - { name: nodebrew }
+      - { name: nvm }
       - { name: pyenv }
       - { name: ghc }
       - { name: autoconf }
@@ -36,6 +36,7 @@
       - { name: argon/mas/mas }
       - { name: ctags }
       - { name: vim, install_options: with-lua, with-python }
+      - { name: neovim }
     homebrew_cask_packages:
       - { name: google-chrome }
       - { name: google-japanese-ime }
