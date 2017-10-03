@@ -23,6 +23,10 @@ au Filetype cs noremap <silent>[omnisharp]format	:OmniSharpCodeFormat<CR>
 hook_post_update = '''
 if dein#util#_is_mac()
     let cmd = 'cd server && xbuild'
+elif dein#util#_is_windows()
+    let cmd = 'cd server && msbuild'
+else
+    let cmd = 'cd server && xbuild'
 endif
 let g:dein#plugin.build = cmd
 '''
