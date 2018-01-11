@@ -3,6 +3,7 @@ repo = 'altercation/vim-colors-solarized'
 hook_add = '''
 colorscheme solarized
 set background=dark
+let g:solarized_termcolors=256
 '''
 
 [[plugins]]
