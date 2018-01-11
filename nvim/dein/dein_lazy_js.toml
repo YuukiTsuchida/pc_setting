@@ -1,0 +1,14 @@
+[[plugins]]
+repo = 'carlitux/deoplete-ternjs'
+on_ft = 'javascript'
+hook_add = '''
+let g:deoplete#sources#ternjs#tern_bin = '/Users/tsuchidayuuki/.nvm/versions/node/v6.9.3/bin/tern'
+'''
+
+hook_post_update = '''
+let g:dein#plugin.build = 'npm install -g tern'
+'''
+
+[[plugins]]
+repo = 'jelera/vim-javascript-syntax'
+on_ft = 'javascript'

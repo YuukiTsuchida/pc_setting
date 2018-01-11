@@ -86,10 +86,14 @@ if &compatible
   set nocompatible
 endif
 
+"タグ複数あることを考慮してキーバンドを上書き
+nnoremap <C-]> g<C-]> 
+
 " python3 の有効
 " 環境により変動　現状はpyenvを入れているので
 " その中の一部のpythonのバージョンディレクトリを指定
-let g:python3_host_prog=$HOME . '/.pyenv/shims/python3.5m'
+let g:python2_host_prog=$HOME . '/.pyenv/shims/python2'
+let g:python3_host_prog=$HOME . '/.pyenv/shims/python3'
 
 " init.vimをロードする関数（nvimは$HOMEに設定がないのでリロードが面倒)
 let $NVIM_SETTINGS=$XDG_CONFIG_HOME . '/nvim/init.vim'
@@ -109,7 +113,9 @@ if dein#load_state(s:plugins)
 "    call dein#load_toml($MY_DEIN_SETTINGS . '/test.toml', {'lazy' : 0})
     call dein#load_toml($MY_DEIN_SETTINGS . '/dein.toml', {'lazy' : 0})
     call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy.toml', {'lazy' : 1})
-
+    call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_cs.toml', {'lazy' : 2})
+    call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_elixir.toml', {'lazy' : 3})
+    call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_js.toml', {'lazy' : 4})
     call dein#end()
     call dein#save_state()
 endif

@@ -1,0 +1,18 @@
+[[plugins]]
+repo = 'elixir-editors/vim-elixir'
+on_ft = ['elixir', 'eelixir']
+
+[[plugins]]
+repo = 'thinca/vim-ref'
+on_ft = ['elixir', 'eelixir']
+
+[[plugins]]
+repo = 'kbrw/elixir.nvim'
+on_ft = ['elixir', 'eelixir']
+hook_post_update = '''
+let g:dein#plugin.build = 'sh ./install.sh'
+'''
+
+[[plugins]]
+repo = 'avdgaag/vim-phoenix'
+on_ft = ['elixir', 'eelixir']
