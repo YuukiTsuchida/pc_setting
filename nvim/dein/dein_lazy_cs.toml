@@ -6,9 +6,16 @@ on_ft = 'cs'
 repo = 'OmniSharp/omnisharp-vim'
 on_ft = 'cs'
 hook_add = '''
-let g:OmniSharp_host = "http://localhost:2000"
-
 let g:OmniSharp_selector_ui = 'ctrlp' 
+
+call deoplete#custom#option('sources', {
+\ 'cs': ['omnisharp'],
+\ })
+
+if has('mac')
+    let g:OmniSharp_server_path = '/Users/tsuchidayuuki/.omnisharp/omnisharp/omnisharp/OmniSharp.exe'
+    let g:OmniSharp_server_use_mono = 1
+endif
 
 nnoremap [omnisharp]    <Nop>
 nmap <Space>os	[omnisharp]
@@ -20,20 +27,28 @@ au Filetype cs noremap <silent>[omnisharp]reload	:OmniSharpReloadSolution<CR>
 au Filetype cs noremap <silent>[omnisharp]format	:OmniSharpCodeFormat<CR>
 '''
 
-hook_post_update = '''
-if dein#util#_is_mac()
-    let cmd = 'cd server && xbuild'
-elif dein#util#_is_windows()
-    let cmd = 'cd server && msbuild'
-else
-    let cmd = 'cd server && xbuild'
-endif
-let g:dein#plugin.build = cmd
-'''
+# [[plugins]]
+# repo = 'cyansprite/omnisharp.nvim'
+# on_ft = 'cs'
+# hook_post_update = '''
+# if dein#util#_is_mac()
+#     "let cmd = 'cd omnisharp-server && git submodule update --init --recursive && ./install.sh'
+#     let cmd = 'install.sh'
+# elif dein#util#_is_windows()
+#     let cmd = 'cd omnisharp-server && git submodule update --init --recursive && msbuild'
+# else
+#     let cmd = 'cd omnisharp-server && git submodule update --init --recursive && ./install.sh'
+# endif
+# let g:dein#plugin.build = cmd
+# '''
+# hook_add = '''
+# let g:deoplete_omnisharp_exe_path = get(g:, "deoplete_omnisharp_exe_path", '~/.config/nvim/plugins/repos/github.com/cyansprite/omnisharp.nvim/omnisharp-server/OmniSharp/bin/Debug/OmniSharp.exe')
+# let g:deoplete_omnisharp_port = get(g:, "deoplete_omnisharp_port", 9999)
+# '''
 
-[[plugins]]
-repo = 'Robzz/deoplete-omnisharp'
-on_ft = 'cs'
+# [[plugins]]
+# repo = 'Robzz/deoplete-omnisharp'
+# on_ft = 'cs'
 
 [[plugins]]
 repo = 'OrangeT/vim-csharp'

@@ -8,15 +8,14 @@ export ANT_ROOT=/usr/local/bin
 export CLANG=$HOME/clang/bin
 
 # Add environment variable COCOS_CONSOLE_ROOT for cocos2d-x
-export COCOS_CONSOLE_ROOT=/Users/tsuchidayuuki/cocos2d-x/tools/cocos2d-console/bin
-
-export PATH=$COCOS_CONSOLE_ROOT:$PATH
 export PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
 export PATH=$PATH:$ANDROID_SDK_ROOT/tools
+export PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
 export PATH=$PATH:$ANDROID_SDK_ROOT/build-tools/23.0.1
 export PATH=$PATH:$NDK_ROOT
 export PATH=$PATH:/usr/local/bin
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH
+export PATH=$PATH:/Users/tsuchidayuuki/.omnisharp/omnisharp/bin
 #export PATH="$(brew --prefix josegonzalez/php/php54)/bin:$PATH"
 #export PATH=/usr/local/opt/php54/bin:$PATH
 #export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
@@ -37,7 +36,12 @@ alias brew="env PATH=${PATH/\/Users\/tsuchidayuuki\/.pyenv\/shims:/} brew"
 
 export BITBUCKET=$HOME/Documents/bitbucket/
 
-alias jenkins='java -jar /usr/local/opt/jenkins/libexec/jenkins.war'
+# xcodeのctagsが有効になるのでaliasで上書き
+alias ctags="`brew --prefix`/bin/ctags"
+#alias jenkins='java -jar /usr/local/opt/jenkins/libexec/jenkins.war'
+
+# gtags
+export GTAGSLABEL=pygments
 
 # GO言語
 #
@@ -73,12 +77,9 @@ ChangeClang()
 # IBM Blue Mix
 alias bluemix='cf'
 
-#######
-# ruby version管理用のrvm設定
-######
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-#PROMPT="%/%% "
+# rbenv 設定
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
 
 # gitコマンド補完
 #source ~/git-completion.bash
@@ -256,3 +257,4 @@ export COCOS_TEMPLATES_ROOT=/Users/tsuchidayuuki/cocos2d-x/templates
 export PATH=$COCOS_TEMPLATES_ROOT:$PATH
 
 [[ -s "/Users/tsuchidayuuki/.gvm/scripts/gvm" ]] && source "/Users/tsuchidayuuki/.gvm/scripts/gvm"
+export PATH="/usr/local/opt/mysql@5.6/bin:$PATH"

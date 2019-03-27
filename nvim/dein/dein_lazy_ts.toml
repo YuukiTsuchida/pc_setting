@@ -1,0 +1,10 @@
+[[plugins]]
+repo = 'HerringtonDarkholme/yats.vim'
+on_ft = 'typescript'
+
+[[plugins]]
+repo = 'HerringtonDarkholme/deoplete-typescript'
+on_ft = 'typescript'
+hook_add = '''
+let g:dein#plugin.build = './install.sh'
+'''

@@ -2,7 +2,7 @@
 set runtimepath+=$HOME/.vim
 
 "カラースキーマ設定
-"set background = dark
+set background = dark
 colorscheme solarized
 
 "フォント設定
@@ -263,13 +263,13 @@ if has('vim_starting')
 
 
 	" ctags
-	NeoBundle 'szw/vim-tags'
+" 	NeoBundle 'szw/vim-tags'
 "	NeoBundle 'soramugi/auto-ctags.vim'
-	NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-      \ 'depends': 'Shougo/vimproc',
-      \ 'autoload' : {
-      \   'commands': ['TagsUpdate', 'TagsSet', 'TagsBundle']
-      \ }}
+" 	NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+"       \ 'depends': 'Shougo/vimproc',
+"       \ 'autoload' : {
+"       \   'commands': ['TagsUpdate', 'TagsSet', 'TagsBundle']
+"       \ }}
 
 	" cs
 
@@ -325,29 +325,29 @@ if has('vim_starting')
                 \ }
 
     " coffee-script
-    NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': [ 'coffee' ] } }
+"     NeoBundleLazy 'kchmck/vim-coffee-script', { 'autoload': { 'filetypes': [ 'coffee' ] } }
 
 	" clojure plugin
-	NeoBundle 'guns/vim-clojure-static'
+" 	NeoBundle 'guns/vim-clojure-static'
 	NeoBundle 'kien/rainbow_parentheses.vim'
-	NeoBundle 'tpope/vim-fireplace'
-	NeoBundle 'tpope/vim-classpath'
+" 	NeoBundle 'tpope/vim-fireplace'
+" 	NeoBundle 'tpope/vim-classpath'
 
 	"ruby
-	NeoBundle 'vim-ruby/vim-ruby'
+" 	NeoBundle 'vim-ruby/vim-ruby'
 " 	NeoBundle "osyo-manga/vim-monster"
-	NeoBundle "Shougo/neocomplcache-rsense.vim"
-	NeoBundle "vim-scripts/ruby-matchit"
-	NeoBundle "basyura/unite-rails"
+" 	NeoBundle "Shougo/neocomplcache-rsense.vim"
+" 	NeoBundle "vim-scripts/ruby-matchit"
+" 	NeoBundle "basyura/unite-rails"
 
     "Xcode
-    NeoBundle 'https://YuukiTsuchida@bitbucket.org/YuukiTsuchida/xcodebuild.vim.git'
+"     NeoBundle 'https://YuukiTsuchida@bitbucket.org/YuukiTsuchida/xcodebuild.vim.git'
 
     "翻訳
     NeoBundle 'daisuzu/translategoogle.vim'
 
     " TypeScript
-    NeoBundle 'Quramy/tsuquyomi'
+"     NeoBundle 'Quramy/tsuquyomi'
     
     " Go言語
     NeoBundle 'fatih/vim-go'
@@ -357,9 +357,12 @@ if has('vim_starting')
     NeoBundle 'gregsexton/gitv'
     NeoBundle 'idanarye/vim-merginal'
 
+    "その他
+    NeoBundle 'vim-jp/vital.vim'
+
     "自作
-    NeoBundle 'YuukiTsuchida/ctags-auto'
-    NeoBundle 'YuukiTsuchida/local-vim-setting'
+"     NeoBundle 'YuukiTsuchida/ctags-auto'
+"     NeoBundle 'YuukiTsuchida/local-vim-setting'
 
 
 call neobundle#end()

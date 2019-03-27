@@ -94,6 +94,11 @@ nnoremap <C-]> g<C-]>
 " その中の一部のpythonのバージョンディレクトリを指定
 let g:python2_host_prog=$HOME . '/.pyenv/shims/python2'
 let g:python3_host_prog=$HOME . '/.pyenv/shims/python3'
+let g:node_host_prog=$HOME . '/.nvm/versions/node/v10.6.0/lib/node_modules/neovim'
+
+let $NVIM_PYTHON2_LOG_FILE=$XDG_CONFIG_HOME . '/nvim/log/nvim-python2.log'
+let $NVIM_PYTHON3_LOG_FILE=$XDG_CONFIG_HOME . '/nvim/log/nvim-python3.log'
+let $NVIM_NODE_LOG_FILE=$XDG_CONFIG_HOME . '/nvim/log/nvim-node.log'
 
 " init.vimをロードする関数（nvimは$HOMEに設定がないのでリロードが面倒)
 let $NVIM_SETTINGS=$XDG_CONFIG_HOME . '/nvim/init.vim'
@@ -116,6 +121,9 @@ if dein#load_state(s:plugins)
     call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_cs.toml', {'lazy' : 2})
     call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_elixir.toml', {'lazy' : 3})
     call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_js.toml', {'lazy' : 4})
+    call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_py.toml', {'lazy' : 5})
+    call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_ts.toml', {'lazy' : 6})
+    call dein#load_toml($MY_DEIN_SETTINGS . '/dein_lazy_cpp.toml', {'lazy' : 7})
     call dein#end()
     call dein#save_state()
 endif

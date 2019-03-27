@@ -35,6 +35,7 @@
       - { name: pkg-config }
       - { name: argon/mas/mas }
       - { name: ctags }
+      - { name: global, install_options: with-exuberant-ctags, with-pygments }
       - { name: vim, install_options: with-lua, with-python }
       - { name: neovim }
     homebrew_cask_packages:
