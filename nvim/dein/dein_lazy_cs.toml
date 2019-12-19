@@ -2,30 +2,31 @@
 repo = 'tpope/vim-dispatch'
 on_ft = 'cs'
 
-[[plugins]]
-repo = 'OmniSharp/omnisharp-vim'
-on_ft = 'cs'
-hook_add = '''
-let g:OmniSharp_selector_ui = 'ctrlp' 
-
-call deoplete#custom#option('sources', {
-\ 'cs': ['omnisharp'],
-\ })
-
-if has('mac')
-    let g:OmniSharp_server_path = '/Users/tsuchidayuuki/.omnisharp/omnisharp/omnisharp/OmniSharp.exe'
-    let g:OmniSharp_server_use_mono = 1
-endif
-
-nnoremap [omnisharp]    <Nop>
-nmap <Space>os	[omnisharp]
-au Filetype cs noremap <silent>[omnisharp]gd		:OmniSharpGotoDefinition<CR>
-au Filetype cs noremap <silent>[omnisharp]fu		:OmniSharpFindUsages<CR>
-au Filetype cs noremap <silent>[omnisharp]ca		:OmniSharpGetCodeActions<CR>
-au Filetype cs noremap <silent>[omnisharp]rename	:OmniSharpRename<CR>
-au Filetype cs noremap <silent>[omnisharp]reload	:OmniSharpReloadSolution<CR>
-au Filetype cs noremap <silent>[omnisharp]format	:OmniSharpCodeFormat<CR>
-'''
+# [[plugins]]
+# repo = 'OmniSharp/omnisharp-vim'
+# on_ft = 'cs'
+# hook_add = '''
+# let g:OmniSharp_selector_ui = 'ctrlp' 
+#
+# call deoplete#custom#option('sources', {
+# \ 'cs': ['omnisharp'],
+# \ })
+#
+# let g:OmniSharp_server_stdio = 1
+# if has('mac')
+# "    let g:OmniSharp_server_path = '/Users/tsuchidayuuki/.omnisharp/omnisharp/omnisharp/OmniSharp.exe'
+#     let g:OmniSharp_server_use_mono = 1
+# endif
+#
+# nnoremap [omnisharp]    <Nop>
+# nmap <Space>os	[omnisharp]
+# au Filetype cs noremap <silent>[omnisharp]gd		:OmniSharpGotoDefinition<CR>
+# au Filetype cs noremap <silent>[omnisharp]fu		:OmniSharpFindUsages<CR>
+# au Filetype cs noremap <silent>[omnisharp]ca		:OmniSharpGetCodeActions<CR>
+# au Filetype cs noremap <silent>[omnisharp]rename	:OmniSharpRename<CR>
+# au Filetype cs noremap <silent>[omnisharp]reload	:OmniSharpReloadSolution<CR>
+# au Filetype cs noremap <silent>[omnisharp]format	:OmniSharpCodeFormat<CR>
+# '''
 
 # [[plugins]]
 # repo = 'cyansprite/omnisharp.nvim'

@@ -1,13 +1,14 @@
-[[plugins]]
-repo = 'carlitux/deoplete-ternjs'
-on_ft = 'javascript'
-hook_add = '''
-let g:deoplete#sources#ternjs#tern_bin = '/Users/tsuchidayuuki/.nvm/versions/node/v6.9.3/bin/tern'
-'''
+# [[plugins]]
+# repo = 'carlitux/deoplete-ternjs'
+# on_ft = 'javascript'
+# hook_add = '''
+# let g:deoplete#sources#ternjs#tern_bin = '/Users/tsuchidayuuki/.nvm/versions/node/v6.9.3/bin/tern'
+# '''
+# depends = ['deoplete.nvim']
 
-hook_post_update = '''
-let g:dein#plugin.build = 'npm install -g tern'
-'''
+# hook_post_update = '''
+# let g:dein#plugin.build = 'npm install -g tern'
+# '''
 
 [[plugins]]
 repo = 'billyvg/tigris.nvim'
