@@ -1,0 +1,11 @@
+{
+    "suggest.minTriggerInputLength": 2,
+    "languageserver": {
+        "clangd": {
+            "command": "clangd-6.0",
+            "rootPatterns": ["compile_flags.txt", "compile_commands.json"],
+            "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+        }
+    },
+    "rust-analyzer.serverPath": "/home/yuuki/.local/bin/rust-analyzer"
+}

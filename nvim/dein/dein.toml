@@ -41,27 +41,31 @@ let g:ale_linters = {
     \   'python': ['flake8'],
     \   'cs': ['OmniSharp'],
     \   'c': ['clangd'],
-    \   'cpp': ['clangd']
+    \   'cpp': ['clangd'],
+    \   'rust': ['rls']
     \ }
 
 let g:ale_fixers = {
       \ 'javascript': ['prettier'],
-      \ 'python': ['autopep8', 'isort'],
+      \ 'python': ['black', 'autopep8', 'isort'],
       \ 'markdown': [
       \   {buffer, lines -> {'command': 'textlint -c ~/.config/textlintrc -o /dev/null --fix --no-color --quiet %t', 'read_temporary_file': 1}}
       \   ],
-      \ 'cpp': ['clang-format']
+      \ 'cpp': ['clang-format'],
+      \ 'rust': ['rustfmt']
       \ }
 
 " 各ツールの実行オプションを変更してPythonパスを固定
 let g:ale_python_flake8_executable = g:python3_host_prog
 let g:ale_python_flake8_options = '-m flake8'
 let g:ale_python_autopep8_executable = g:python3_host_prog
-let g:ale_python_autopep8_options = '-m autopep8'
+let g:ale_python_autopep8_options = '-m autopep8 --aggressive --aggressive'
 let g:ale_python_isort_executable = g:python3_host_prog
 let g:ale_python_isort_options = '-m isort'
 let g:ale_python_black_executable = g:python3_host_prog
 let g:ale_python_black_options = '-m black'
+
+let g:ale_rust_rls_executable = 'rust-analyzer'
 
 " 保存ときのフォーマット
 let g:ale_fix_on_save = 1
@@ -88,7 +92,7 @@ let g:ale_sign_warning = '⚠'
 
 [[plugins]]
 repo = 'kien/ctrlp.vim'
-hook_add = '''
+hnook_add = '''
 if executable('ag')
   let g:ctrlp_use_caching = 0
   let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup -g ""'
@@ -159,7 +163,7 @@ function! s:defx_my_settings() abort
   nnoremap <silent><buffer><expr> E defx#do_action('open', 'vsplit')
   nnoremap <silent><buffer><expr> P defx#do_action('open', 'pedit')
   nnoremap <silent><buffer><expr> o defx#do_action('open_or_close_tree')
-  nnoremap <silent><buffer><expr> d defx#do_action('new_directory')
+  nnoremap <silent><buffer><expr> D defx#do_action('new_directory')
   nnoremap <silent><buffer><expr> n defx#do_action('new_file')
   nnoremap <silent><buffer><expr> M defx#do_action('new_multiple_files')
   nnoremap <silent><buffer><expr> C defx#do_action('toggle_columns', 'mark:indent:icon:filename:type:size:time')

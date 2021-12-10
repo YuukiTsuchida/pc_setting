@@ -94,7 +94,7 @@ nnoremap <C-]> g<C-]>
 " その中の一部のpythonのバージョンディレクトリを指定
 let g:python2_host_prog=$HOME . '/.pyenv/shims/python2'
 let g:python3_host_prog=$HOME . '/.pyenv/shims/python3'
-let g:node_host_prog=$HOME . '/.nvm/versions/node/v10.6.0/lib/node_modules/neovim'
+let g:node_host_prog=$HOME . '/.nvm/versions/node/v14.0.0/lib/node_modules/neovim'
 
 let $NVIM_PYTHON2_LOG_FILE=$XDG_CONFIG_HOME . '/nvim/log/nvim-python2.log'
 let $NVIM_PYTHON3_LOG_FILE=$XDG_CONFIG_HOME . '/nvim/log/nvim-python3.log'
